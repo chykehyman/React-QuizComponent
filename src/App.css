@@ -25,11 +25,54 @@ ul {
   justify-content: center;
   text-align: center;
 }
+.buttons ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
 button {
   margin: 0.6em auto;
   font-size: 1.5em;
   display: block;
 }
+.button-value {
+  padding: 0 10px;
+}
 .error {
   color: red;
+}
+.reset-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reset-container p {
+  font-size: 220%;
+  letter-spacing: 2px;
+  margin-top: 50px;
+}
+.reset-container a {
+  text-decoration: none;
+  border: 2px solid #cfd6bd;
+  padding: 10px;
+  border-radius: 5px;
+  color: #555;
+}
+.reset-container a:hover {
+  background-color: #cfd6bd;
+  color: #555;
+}
+.instruction {
+  font-size: 115%;
+}
+p.alert-error {
+  background-color: rgb(247, 168, 168);
+  padding: 10px 0;
+  color: rgb(245, 50, 50);
+}
+p.alert-success {
+  background-color: rgb(144, 211, 144);
+  padding: 10px 0;
+  color: rgb(21, 110, 21);
 }

@@ -11,6 +11,12 @@
       "instruction_text": "What's your favorite number?",
       "answer_options": ["1", "2", "3", "4"],
       "answer": "4"
+    },
+    {
+      "id": 3,
+      "instruction_text": "How many pair(s) of ear(s) does a human have?",
+      "answer_options": ["1", "2", "3", "4"],
+      "answer": "1"
     }
   ]
 }

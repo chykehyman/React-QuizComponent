@@ -3,31 +3,42 @@ import React, { Component } from 'react';
 import QuizQuestionButton from './QuizQuestionButton.js'
 
 class QuizQuestion extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            incorrectAnswer: false
+    state = {
+        isCorrectAnswer: null
+    }
+
+    handleClick = (buttonText) => {
+        if (buttonText === this.props.quiz_question.answer) {
+            this.props.showNextQuestionHandler();
+            this.setAppState(true);
+
+            setTimeout(() => this.setAppState(null), 1500);
+            
+        } else {
+            this.setAppState(false)
+            setTimeout(() => this.setAppState(null), 1500);
         }
     }
 
-    handleClick(buttonText) {
-        if (buttonText === this.props.quiz_question.answer) {
-            this.props.showNextQuestionHandler()
-            this.setState(() => ({
-                incorrectAnswer: false
-            }));
-        } else {
-            this.setState(() => ({
-                incorrectAnswer: true
-            }));
+    setAppState = (state) => {
+        this.setState(() => ({
+            isCorrectAnswer: state
+        }));
+    }
+
+    showMessage = () => {
+        if(this.state.isCorrectAnswer) {
+            return <p className='alert-success'>Hurray, that is correct</p>
         }
+
+        return <p className='alert-error'>Sorry, that's not right</p>
     }
 
     render() { 
         return ( 
             <main>
-                <section>
+                <section className="instruction">
                     <p>{this.props.quiz_question.instruction_text}</p>
                 </section>
                 <section className="buttons">
@@ -36,11 +47,11 @@ class QuizQuestion extends Component {
                             <QuizQuestionButton 
                                 key={index} 
                                 button_text={answer_option} 
-                                clickHandler={this.handleClick.bind(this)}/>
+                                clickHandler={this.handleClick}/>
                         )}
                     </ul>
                 </section>
-                {this.state.incorrectAnswer && <p className='error'>Sorry, that's not right</p>}
+                { this.state.isCorrectAnswer !== null && this.showMessage()}
             </main>
          );
     }
